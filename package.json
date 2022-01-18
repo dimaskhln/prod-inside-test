@@ -1,0 +1,35 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "serve": "webpack serve --mode development"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@webpack-cli/serve": "^1.6.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "deepmerge": "^4.2.2",
+    "html-webpack-plugin": "^5.1.0",
+    "rimraf": "^2.6.2",
+    "sass": "^1.32.13",
+    "sass-loader": "^12.4.0",
+    "vue": "^2.5.17",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^3.11.3"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "vue-router": "^3.5.3",
+    "vuetify": "^2.6.2"
+  }
+}
