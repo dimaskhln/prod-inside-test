@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h3>{{ character.name }}</h3>
     <v-row>
-      <v-col v-for="location in JSON.parse(JSON.stringify(locations))" :key="location.id" cols="12" sm="12" md="12">
-        <v-card class="mx-3 mt-3">
-          <v-card-title class="text-lg-h3"> {{ location.name }}</v-card-title>
-        </v-card>
-      </v-col>
+      <v-card class="mx-3 mt-3" to="/location">
+        <v-card-title class="text-lg-h3">
+          <h3>{{ character.name }}</h3></v-card-title
+        >
+        <v-card-text>Origin: {{ character.origin.name }}</v-card-text>
+        <v-card-text>Location: {{ character.location.name }}</v-card-text>
+      </v-card>
+    </v-row>
+    <h4>Episodes:</h4>
+    <v-row v-for="episode in episodes" :key="episode.id">
+      <v-card class="mx-3 mt-3" to="/location">
+        <v-card-title class="text-lg-h3"> {{ episode.name }}</v-card-title>
+      </v-card>
     </v-row>
   </div>
 </template>
@@ -16,7 +23,9 @@ export default {
   data() {
     return {
       character: {},
-      locations: [],
+      location: {},
+      locationOrigin: {},
+      episodes: [],
     };
   },
   methods: {
@@ -24,16 +33,15 @@ export default {
       try {
         let response = await fetch('https://rickandmortyapi.com/api/character/1');
         this.character = await response.json();
-
-        let requests = this.character.locations.map((url) => fetch(url));
+        let requests = this.character.episode.map((url) => fetch(url));
 
         Promise.all(requests)
           .then((responses) => {
             return responses;
           })
           .then((responses) => Promise.all(responses.map((r) => r.json())))
-          .then((locations) => {
-            locations.forEach((location) => this.chars.push(location));
+          .then((episodes) => {
+            episodes.forEach((episode) => this.episodes.push(episode));
           });
       } catch (error) {
         console.log(error);
