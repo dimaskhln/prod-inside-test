@@ -9,4 +9,5 @@ new Vue({
   render: (h) => h(App),
   vuetify,
   router,
+  axios,
 });
