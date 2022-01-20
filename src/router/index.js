@@ -10,39 +10,34 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '*',
-    components: {
-      mainView: EpisodeList,
-    },
+    component: EpisodeList,
   },
   {
     path: '/episode_list',
-    components: {
-      mainView: EpisodeList,
-    },
+    name: 'episodeList',
+    component: EpisodeList,
   },
   {
-    path: '/episode',
-    components: {
-      mainView: Episode,
-    },
+    path: '/episode/:id',
+    name: 'episode',
+    component: Episode,
   },
 
   {
-    path: '/location',
-    components: {
-      mainView: Location,
-    },
+    path: '/location/:id',
+    name: 'location',
+    component: Location,
   },
 
   {
-    path: '/character',
-    components: {
-      mainView: Character,
-    },
+    path: '/character/:id',
+    name: 'character',
+    component: Character,
   },
 ];
 
 const router = new VueRouter({
+  // mode: 'history',
   routes,
 });
 

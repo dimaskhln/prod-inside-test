@@ -3,9 +3,11 @@
     <h3>"{{ location.name }}"</h3>
     <v-row>
       <v-col v-for="character in JSON.parse(JSON.stringify(chars))" :key="character.id" cols="12" sm="12" md="12">
-        <v-card class="mx-3 mt-3" to="/character">
-          <v-card-title class="text-lg-h3"> {{ character.name }}</v-card-title>
-        </v-card>
+        <router-link :to="{ name: 'character', params: { id: character.id } }">
+          <v-card class="mx-3 mt-3">
+            <v-card-title class="text-lg-h3"> {{ character.name }}</v-card-title>
+          </v-card>
+        </router-link>
       </v-col>
     </v-row>
   </div>
@@ -22,7 +24,7 @@ export default {
   methods: {
     async getLocation() {
       try {
-        let response = await fetch('https://rickandmortyapi.com/api/location/1');
+        let response = await fetch('https://rickandmortyapi.com/api/location/' + this.$route.params.id);
         this.location = await response.json();
 
         let requests = this.location.residents.map((url) => fetch(url));
